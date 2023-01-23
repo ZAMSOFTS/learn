@@ -1,0 +1,14 @@
+body {
+  background-image: url("https://www.teahub.io/photos/full/103-1033393_new-full-hd-wallpapers-1080p.jpg");
+}
+
+.stal {
+  box-sizing: border-box;
+  font-size: 1000%;
+  font-family: "Anton", sans-serif;
+  color: azure;
+  margin-top: 20%;
+  text-align: center;
+  background-color: #1818185d;
+  margin-left: auto;
+}
