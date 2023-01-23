@@ -20,7 +20,7 @@ if (datu > 4 && datu < 12) {
 
 function Heading() {
   return (
-    <h1 className="stal" contentEditable>
+    <h1 className="stal">
       Hello Sir, <span style={ztile}>{greeting}</span>
     </h1>
   );
