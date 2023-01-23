@@ -1,6 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import bg from "./images/24.png";
+import bgvid from "./images/cricket.mp4";
+import css from "./index.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <>
+    <div className="vid">
+      <video autoPlay loop muted>
+        <source src={bgvid} type="video/mp4" />
+      </video>
+    </div>
+    <App />
+  </>,
+  document.getElementById("root")
+);

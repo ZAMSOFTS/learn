@@ -15,13 +15,13 @@ if (datu > 4 && datu < 12) {
   ztile.color = "red";
 } else if (datu >= 18 && datu <= 24) {
   greeting = "Good Night";
-  ztile.color = "black";
+  ztile.color = "purple";
 }
 
 function Heading() {
   return (
     <h1 className="stal" contentEditable>
-      Hello Sir sss ,<span style={ztile}>{greeting}</span>
+      Hello Sir, <span style={ztile}>{greeting}</span>
     </h1>
   );
 }
