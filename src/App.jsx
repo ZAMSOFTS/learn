@@ -12,7 +12,10 @@ function App(props) {
             <span className="cardCategory"> {props.cat}</span>
             <h3 className="cardTitle">{props.tit}</h3>
             <a href={props.link} target="_blank">
-              <button>Click To Watch</button>
+              <button>Click Here To Watch</button>
+            </a>
+            <a href={props.dlink} target="_blank">
+              <button2>Download</button2>
             </a>
           </div>
         </div>
