@@ -1,40 +1,41 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import Ndata from "./Ndata";
 
 ReactDOM.render(
   <>
-    <h1 className="heading_style">Top 5 Naats</h1>
+    <h4 className="heading_style">Top 5 Naats in 2023</h4>
 
     <App
-      pic="https://i.ytimg.com/vi/L7dCk09AwWs/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAs4FigIMCAAQARhUIGUoZTAP&rs=AOn4CLC6zTLfS-pp0hx7UBYojRdg9OZ0jQ"
-      cat="Urdu Naats"
-      tit="Kabe Ki Ronak"
-      link="https://youtu.be/L7dCk09AwWs"
+      pic={Ndata[0].pic}
+      cat={Ndata[0].cat}
+      tit={Ndata[0].tit}
+      link={Ndata[0].link}
     />
     <App
-      pic="https://i.ytimg.com/vi/TfcjkaRpRUs/hqdefault.jpg?sqp=-oaymwE2CPYBEIoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARgzIGQocjAP&rs=AOn4CLCiadeGHkQG99_xNkIMlOeAvARA4g"
-      cat="Urdu Naats"
-      tit="Nabi Ka Lab Par "
-      link="https://youtu.be/TfcjkaRpRUs"
+      pic={Ndata[1].pic}
+      cat={Ndata[1].cat}
+      tit={Ndata[1].tit}
+      link={Ndata[1].link}
     />
     <App
-      pic="https://i.ytimg.com/vi/dJ3wTqTmnGI/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB6UZSLf63qv38F6ezbRgDhaKQ0kw"
-      cat="Urdu Naats"
-      tit="Main Kaabe Ko Dekhunga "
-      link="https://youtu.be/dJ3wTqTmnGI"
+      pic={Ndata[2].pic}
+      cat={Ndata[2].cat}
+      tit={Ndata[2].tit}
+      link={Ndata[2].link}
     />
     <App
-      pic="https://i.ytimg.com/vi/yrQ_zAy_QYY/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBwImhEe48S3VpE4EV4_njTKQ_VaA"
-      cat="Urdu Naats"
-      tit="chor fikr duniya ki "
-      link="https://youtu.be/yrQ_zAy_QYY"
+      pic={Ndata[3].pic}
+      cat={Ndata[3].cat}
+      tit={Ndata[3].tit}
+      link={Ndata[3].link}
     />
     <App
-      pic="https://i.ytimg.com/vi/fvf3e1Ae9w4/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC3cNfRQly969kS5qdPzRXY5uDd0w"
-      cat="Urdu Naats"
-      tit="Wo Mera Nabi Hai "
-      link="https://youtu.be/fvf3e1Ae9w4"
+      pic={Ndata[4].pic}
+      cat={Ndata[4].cat}
+      tit={Ndata[4].tit}
+      link={Ndata[4].link}
     />
   </>,
   document.getElementById("root")
