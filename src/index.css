@@ -100,3 +100,7 @@ button:hover {
   box-shadow: 0px 5px 5px -2px black;
   transform: scale(1.05, 1.05);
 }
+button2:hover {
+  box-shadow: 0px 5px 5px -2px black;
+  transform: scale(1.05, 1.05);
+}
