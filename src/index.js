@@ -4,6 +4,8 @@ import App from "./App";
 
 ReactDOM.render(
   <>
+    <h1 className="heading_style">Top 5 Naats</h1>
+
     <App
       pic="https://i.ytimg.com/vi/L7dCk09AwWs/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAs4FigIMCAAQARhUIGUoZTAP&rs=AOn4CLC6zTLfS-pp0hx7UBYojRdg9OZ0jQ"
       cat="Urdu Naats"
