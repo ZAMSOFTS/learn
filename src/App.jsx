@@ -1,27 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 
-function App(props) {
-  console.log(props);
+const App = () => {
+  let time = new Date().toLocaleTimeString();
+  const [cTime, setTime] = useState(time);
+
+  const updateTime = () => {
+    time = new Date().toLocaleTimeString();
+    setTime(time);
+  };
+
+  setInterval(updateTime, 1000);
+
   return (
     <>
-      <div className="cards">
-        <div className="card">
-          <img src={props.pic} className="cardImg" />
-          <div className="cardInfo">
-            <span className="cardCategory"> {props.cat}</span>
-            <h3 className="cardTitle">{props.tit}</h3>
-            <a href={props.link} target="_blank">
-              <button>Click Here To Watch</button>
-            </a>
-            <a href={props.dlink} target="_blank">
-              <button2>Download</button2>
-            </a>
-          </div>
-        </div>
+      <h1 className="heading">Time Baun tez guzarna paya ne jee</h1>
+      <div className="container">
+        <h1 className="head">{cTime}</h1>
       </div>
     </>
   );
-}
+};
 
 export default App;
