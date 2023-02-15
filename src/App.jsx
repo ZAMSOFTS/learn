@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import "./index.css";
 
 const App = () => {
-  let time = new Date().toLocaleTimeString();
-  const [cTime, setTime] = useState(time);
+  const black = "#000000";
+  const [bg, setbg] = useState(black);
+  const [btn, setbtn] = useState("Dont Touch Me");
 
-  const updateTime = () => {
-    time = new Date().toLocaleTimeString();
-    setTime(time);
+  const normal = () => {
+    setbtn("Baaz aja 🙃");
   };
 
-  setInterval(updateTime, 1000);
-
+  const colour = () => {
+    let newbg = "#000000";
+    setbg(newbg);
+    setbtn("Dont Double Click 😠😠😠 ");
+  };
   return (
     <>
-      <h1 className="heading">Time Baun tez guzarna paya ne jee</h1>
-      <div className="container">
-        <h1 className="head">{cTime}</h1>
+      <div className="container" style={{ background: bg }}>
+        <button onClick={colour} onDoubleClick={normal}>
+          {btn}
+        </button>
       </div>
     </>
   );
