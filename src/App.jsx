@@ -2,25 +2,36 @@ import React, { useState } from "react";
 import "./index.css";
 
 const App = () => {
-  const black = "#000000";
-  const [bg, setbg] = useState(black);
-  const [btn, setbtn] = useState("Dont Touch Me");
+  const [before, after] = useState();
+  const [fullname, setfullname] = useState();
+  const [head, sethead] = useState("Lets Find Your Age");
+  const [iftar, setiftar] = useState();
 
-  const normal = () => {
-    setbtn("Baaz aja 🙃");
+  const inputEvent = (event) => {
+    after(event.target.value);
   };
 
-  const colour = () => {
-    let newbg = "#000000";
-    setbg(newbg);
-    setbtn("Dont Double Click 😠😠😠 ");
+  const onSubmit = () => {
+    setfullname(before);
+    sethead("Your Are ");
+    setiftar(" Years Old");
   };
   return (
     <>
-      <div className="container" style={{ background: bg }}>
-        <button onClick={colour} onDoubleClick={normal}>
-          {btn}
-        </button>
+      <div>
+        <h1>
+          {head} <span>{fullname}</span>
+          {iftar}
+        </h1>
+        <input
+          type="number"
+          pattern="[0-9]*"
+          max={12}
+          placeholder="Enter Your Age"
+          onChange={inputEvent}
+          value={before}
+        />
+        <button onClick={onSubmit}>Find Age</button>
       </div>
     </>
   );
