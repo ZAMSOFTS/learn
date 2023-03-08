@@ -1,98 +1,83 @@
 import React, { useState } from "react";
 import "./index.css";
-import myAudio from "./images/final.mp3";
 
-const App = () => {
-  const [fullName, setFullName] = useState({
-    fName: "",
-    lName: "",
-    eMail: "",
-    pNumber: "",
+const itemPrices = {
+  apple: 10,
+  banana: 15,
+  carrot: 5,
+  tomato: 20,
+};
+
+function App() {
+  const [itemList, setItemList] = useState([]);
+  const [item, setItem] = useState({
+    name: "",
+    price: "",
+    weight: "",
   });
 
-  const onSubmit = (event) => {
-    const audio = new Audio(myAudio);
-    audio.play();
-    event.preventDefault();
-  };
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setItem((prevItem) => ({ ...prevItem, [name]: value }));
+  }
 
-  const inputEvent = (event) => {
-    console.log(event.target.value);
-    console.log(event.target.name);
+  function addItem() {
+    const newItem = {
+      name: item.name,
+      price: itemPrices[item.name] * item.weight,
+      weight: item.weight,
+    };
+    setItemList((prevItems) => [...prevItems, newItem]);
+    setItem({ name: "", price: "", weight: "" });
+    alert("Item added!");
+  }
 
-    const { value, name } = event.target;
-
-    setFullName((preValue) => {
-      if (name === "fName") {
-        return { fName: value, lName: preValue.lName };
-      } else if (name === "lName") {
-        return {
-          fName: preValue.fName,
-          lName: value,
-          eMail: preValue.eMail,
-          pNumber: preValue.pNumber,
-        };
-      } else if (name === "eMail") {
-        return {
-          fName: preValue.fName,
-          lName: preValue.lName,
-          eMail: value,
-          pNumber: preValue.pNumber,
-        };
-      } else if (name === "pNumber") {
-        return {
-          fName: preValue.fName,
-          lName: preValue.lName,
-          eMail: preValue.eMail,
-          pNumber: value,
-        };
-      }
-    });
-  };
+  const totalPrice = itemList.reduce((sum, item) => sum + item.price, 0);
 
   return (
-    <div class="container">
-      <div class="form-container">
-        <form onSubmit={onSubmit}>
+    <div>
+      <h1>Welcome to My Shop</h1>
+      <form>
+        <label htmlFor="item-select">Select an item:</label>
+        <select
+          id="item-select"
+          name="name"
+          value={item.name}
+          onChange={handleChange}
+        >
+          <option value="">Select an item</option>
+          <option value="apple">Apple</option>
+          <option value="banana">Banana</option>
+          <option value="carrot">Carrot</option>
+          <option value="tomato">Tomato</option>
+        </select>
+        {item.name && (
           <div>
-            <h1>
-              Hello {fullName.fName} {fullName.lName}
-            </h1>
-            <p class="info">Tusana Email: {fullName.eMail}</p>
-            <p class="info">Tusana Number: {fullName.pNumber}</p>
-            <input
-              placeholder="Enter Your First Name"
-              name="fName"
-              onChange={inputEvent}
-              value={fullName.fName}
-            />
-            <br />
-            <input
-              placeholder="Enter Your Last Name"
-              name="lName"
-              onChange={inputEvent}
-              value={fullName.lName}
-            />
-            <br />
-            <input
-              placeholder="Enter Your Email"
-              name="eMail"
-              onChange={inputEvent}
-              value={fullName.eMail}
-            />
-            <br />
-            <input
-              placeholder="Enter Your Phone Number"
-              name="pNumber"
-              onChange={inputEvent}
-              value={fullName.pNumber}
-            />
-            <button type="submit">Submit</button>
+            <label>Price per KG (PKR): {itemPrices[item.name]}</label>
           </div>
-        </form>
-      </div>
+        )}
+        <br />
+        <label htmlFor="item-weight">Weight in KG:</label>
+        <input
+          type="number"
+          id="item-weight"
+          name="weight"
+          value={item.weight}
+          onChange={handleChange}
+        />
+        <br />
+        <button type="button" onClick={addItem}>
+          Add Item
+        </button>
+      </form>
+      {itemList.map((item, index) => (
+        <p key={index}>
+          {item.name} - {item.price.toFixed(2)} PKR
+        </p>
+      ))}
+      <h2>Total Price: {totalPrice.toFixed(2)} PKR</h2>
     </div>
   );
-};
+}
 
 export default App;
