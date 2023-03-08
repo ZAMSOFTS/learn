@@ -72,6 +72,8 @@ button {
 
 button:hover {
   background-color: #1a75ff;
+  transform: scale(1.2, 1.2);
+  transition: transform 0.2s ease-in-out;
 }
 
 /* Item list */
