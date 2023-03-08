@@ -24,9 +24,10 @@ div {
 
 /* Heading */
 h1 {
-  font-size: 2rem;
+  font-size: 2vi;
   margin-bottom: 1rem;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Form */

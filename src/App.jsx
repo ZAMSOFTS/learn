@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div>
-      <h1>Welcome to My Shop</h1>
+      <h1>SHAQEEL STORE</h1>
       <form>
         <label htmlFor="item-select">Select an item:</label>
         <select
@@ -107,10 +107,11 @@ function App() {
           value={item.weight}
           onChange={handleChange}
         />
-        <br />
+
         <button type="button" onClick={addItem}>
           Add Item
         </button>
+        <br />
       </form>
       {itemList.map((item, index) => (
         <p key={index}>
