@@ -1,126 +1,192 @@
 import React, { useState } from "react";
 import "./index.css";
 
-const itemPrices = {
-  apple: 100,
-  banana: 200,
-  carrot: 80,
-  tomato: 70,
-  avocado: 250,
-  blueberry: 400,
-  broccoli: 120,
-  cabbage: 60,
-  cantaloupe: 80,
-  cauliflower: 100,
-  cherry: 600,
-  cucumber: 40,
-  eggplant: 90,
-  grape: 300,
-  honeydew: 70,
-  kiwi: 150,
-  lemon: 90,
-  lettuce: 50,
-  mango: 180,
-  onion: 30,
-  orange: 120,
-  peach: 200,
-  pear: 180,
-  pineapple: 120,
-  potato: 20,
-  raspberry: 500,
-  spinach: 70,
-  strawberry: 350,
-  watermelon: 40,
-  zucchini: 80,
-};
+const App = () => {
+  const [items, setItems] = useState([
+    { name: "Apple", buyingPrice: 100, sellingPrice: 150 },
+    { name: "Carrot", buyingPrice: 50, sellingPrice: 75 },
+  ]);
+  const [cart, setCart] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(items[0]);
+  const [orderCompleted, setOrderCompleted] = useState(false);
 
-function App() {
-  const [itemList, setItemList] = useState([]);
-  const [item, setItem] = useState({
-    name: "",
-    price: "",
-    weight: "",
-  });
+  const [newItemName, setNewItemName] = useState("");
+  const [newItemBuyingPrice, setNewItemBuyingPrice] = useState("");
+  const [newItemSellingPrice, setNewItemSellingPrice] = useState("");
+  const [totalOrders, setTotalOrders] = useState(0);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setItem((prevItem) => ({ ...prevItem, [name]: value }));
-  }
+  const handleItemAddToCart = (weight) => {
+    const existingCartItem = cart.find(
+      (item) => item.name === selectedItem.name
+    );
 
-  function addItem() {
+    if (existingCartItem) {
+      const updatedCart = cart.map((item) => {
+        if (item.name === selectedItem.name) {
+          return {
+            ...item,
+            weight: parseFloat(item.weight) + parseFloat(weight),
+            totalCost:
+              parseFloat(item.totalCost) +
+              parseFloat(weight * selectedItem.sellingPrice),
+            profit:
+              (parseFloat(item.weight) + parseFloat(weight)) *
+                selectedItem.sellingPrice -
+              (parseFloat(item.weight) + parseFloat(weight)) *
+                selectedItem.buyingPrice,
+          };
+        } else {
+          return item;
+        }
+      });
+      setCart(updatedCart);
+    } else {
+      const newCartItem = {
+        name: selectedItem.name,
+        weight: weight,
+        profit:
+          weight * selectedItem.sellingPrice -
+          weight * selectedItem.buyingPrice,
+        totalCost: weight * selectedItem.sellingPrice,
+      };
+      setCart([...cart, newCartItem]);
+    }
+
+    setOrderCompleted(true);
+  };
+
+  const handleNextOrder = () => {
+    setCart([]);
+    setOrderCompleted(false);
+    setTotalOrders(totalOrders + 1);
+  };
+
+  const handleNewItemSubmit = (event) => {
+    event.preventDefault();
     const newItem = {
-      name: item.name,
-      price: itemPrices[item.name] * item.weight,
-      weight: item.weight,
+      name: newItemName,
+      buyingPrice: newItemBuyingPrice,
+      sellingPrice: newItemSellingPrice,
     };
-    setItemList((prevItems) => [...prevItems, newItem]);
-    setItem({ name: "", price: "", weight: "" });
-  }
+    setItems([...items, newItem]);
+    setNewItemName("");
+    setNewItemBuyingPrice("");
+    setNewItemSellingPrice("");
+  };
 
-  const totalPrice = itemList.reduce((sum, item) => sum + item.price, 0);
+  const netProfit = cart.reduce((acc, cur) => acc + cur.profit, 0);
+  const totalCost = cart.reduce((acc, cur) => acc + cur.totalCost, 0);
+  const numberOfOrders = cart.length;
+  const totalProfit = cart.reduce((acc, item) => acc + item.profit, 0);
+  const totalSales = cart.reduce((acc, item) => acc + item.totalCost, 0);
 
   return (
     <div>
-      <h1>SHAQEEL STORE</h1>
-      <form>
-        <label htmlFor="item-select">Select an item:</label>
-        <select
-          id="item-select"
-          name="name"
-          value={item.name}
-          onChange={handleChange}
+      <h1>Shop</h1>
+      <div>
+        <label>
+          Item:
+          <select
+            value={selectedItem.name}
+            onChange={(e) =>
+              setSelectedItem(
+                items.find((item) => item.name === e.target.value)
+              )
+            }
+          >
+            {items.map((item) => (
+              <option key={item.name} value={item.name}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <label>
+          Weight (kg):
+          <input
+            type="number"
+            defaultValue={1}
+            min={0}
+            step={0.1}
+            ref={(input) => (selectedItem.weightInput = input)}
+          />
+        </label>
+        <button
+          onClick={() => handleItemAddToCart(selectedItem.weightInput.value)}
         >
-          <option value="">Select an item</option>
-          <option value="apple">Apple</option>
-          <option value="banana">Banana</option>
-          <option value="carrot">Carrot</option>
-          <option value="tomato">Tomato</option>
-          <option value="avocado">Avocado</option>
-          <option value="blueberry">Blueberry</option>
-          <option value="broccoli">Broccoli</option>
-          <option value="cabbage">Cabbage</option>
-          <option value="cantaloupe">Cantaloupe</option>
-          <option value="cauliflower">Cauliflower</option>
-          <option value="cherry">Cherry</option>
-          <option value="cucumber">Cucumber</option>
-          <option value="eggplant">Eggplant</option>
-          <option value="grape">Grape</option>
-          <option value="honeydew">Honeydew</option>
-          <option value="kiwi">Kiwi</option>
-          <option value="lemon">Lemon</option>
-          <option value="lettuce">Lettuce</option>
-          <option value="mango">Mango</option>
-          <option value="onion">Onion</option>
-          <option value="orange">Orange</option>
-        </select>
-        {item.name && (
-          <div>
-            <label>Price per KG (PKR): {itemPrices[item.name]}</label>
-          </div>
-        )}
-        <br />
-        <label htmlFor="item-weight">Weight in KG:</label>
-        <input
-          type="number"
-          id="item-weight"
-          name="weight"
-          value={item.weight}
-          onChange={handleChange}
-        />
-
-        <button type="button" onClick={addItem}>
-          Add Item
+          Add to cart
         </button>
-        <br />
+        {orderCompleted && (
+          <button onClick={handleNextOrder}>Next Order</button>
+        )}
+      </div>
+      <div>
+        <h2>Cart</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Weight (kg)</th>
+              <th>Total Cost</th>
+              <th>Profit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((item, index) => (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.weight}</td>
+                <td>{item.totalCost.toFixed(2)}</td>
+                <td>{item.profit.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="2">Total</td>
+              <td>{totalCost.toFixed(2)}</td>
+              <td>{netProfit.toFixed(2)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <form onSubmit={handleNewItemSubmit}>
+        <h1>Add Custom Item</h1>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={newItemName}
+            onChange={(event) => setNewItemName(event.target.value)}
+          />
+        </label>
+        <label>
+          Buying Price:
+          <input
+            type="number"
+            value={newItemBuyingPrice}
+            onChange={(event) => setNewItemBuyingPrice(event.target.value)}
+          />
+        </label>
+        <label>
+          Selling Price:
+          <input
+            type="number"
+            value={newItemSellingPrice}
+            onChange={(event) => setNewItemSellingPrice(event.target.value)}
+          />
+        </label>
+        <button type="submit">Add Item</button>
       </form>
-      {itemList.map((item, index) => (
-        <p key={index}>
-          {item.name} - {item.price.toFixed(2)} PKR
-        </p>
-      ))}
-      <h2>Total Price: {totalPrice.toFixed(2)} PKR</h2>
+      <div>
+        <h2>Order Summary</h2>
+        <p>Total Orders: {totalOrders}</p>
+        <p>Total Profit: {totalProfit.toFixed(2)}</p>
+        <p>Total Sales: {totalSales.toFixed(2)}</p>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
