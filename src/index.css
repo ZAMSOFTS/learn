@@ -108,3 +108,18 @@ select {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
+p {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 1.5vi;
+  color: rgb(0, 76, 255);
+  margin-left: 13vi;
+}
+
+h2,
+h1 {
+  font-size: 2.5vi;
+  margin-bottom: 20px;
+  text-align: center;
+}

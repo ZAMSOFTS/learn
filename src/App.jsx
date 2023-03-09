@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
-
+import backgroundImage from "./images/circ.jpg";
 const App = () => {
   const [items, setItems] = useState([
     { name: "Apple", buyingPrice: 100, sellingPrice: 150 },
@@ -81,8 +81,15 @@ const App = () => {
   const totalSales = cart.reduce((acc, item) => acc + item.totalCost, 0);
 
   return (
-    <div>
-      <h1>Shop</h1>
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        backgroundSize: "cover",
+      }}
+    >
+      <h1>SHAQEEL STORE</h1>
       <div>
         <label>
           Item:
@@ -182,8 +189,6 @@ const App = () => {
       <div>
         <h2>Order Summary</h2>
         <p>Total Orders: {totalOrders}</p>
-        <p>Total Profit: {totalProfit.toFixed(2)}</p>
-        <p>Total Sales: {totalSales.toFixed(2)}</p>
       </div>
     </div>
   );
