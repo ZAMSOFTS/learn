@@ -112,10 +112,9 @@ select {
 p {
   font-family: Arial;
   font-weight: bold;
-  font-size: 1.5vi;
-  color: rgb(201, 99, 100);
-
-  margin-left: 13vi;
+  font-size: 2.5vi;
+  color: rgb(254, 8, 0);
+  text-align: center;
 }
 
 h2,

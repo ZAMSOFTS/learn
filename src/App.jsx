@@ -187,7 +187,6 @@ const App = () => {
         <button type="submit">Add Item</button>
       </form>
       <div>
-        <h2>Order Summary</h2>
         <p>Total Orders: {totalOrders}</p>
       </div>
     </div>
