@@ -194,8 +194,8 @@ const App = () => {
       </form>
       <div>
         <p>Total Orders - {totalOrders}</p>
-        <p> Total Profit - {totalProfit}</p>
-        <p> Total Sales - {totalSales}</p>
+        <p> Total Sales - {totalSales} PKR</p>
+        <p> Total Profit - {totalProfit} PKR</p>
       </div>
     </div>
   );
