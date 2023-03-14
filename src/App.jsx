@@ -9,11 +9,12 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [selectedItem, setSelectedItem] = useState(items[0]);
   const [orderCompleted, setOrderCompleted] = useState(false);
-
   const [newItemName, setNewItemName] = useState("");
   const [newItemBuyingPrice, setNewItemBuyingPrice] = useState("");
   const [newItemSellingPrice, setNewItemSellingPrice] = useState("");
   const [totalOrders, setTotalOrders] = useState(0);
+  const [totalProfit, setTotalProfit] = useState(0);
+  const [totalSales, setTotalSales] = useState(0);
 
   const handleItemAddToCart = (weight) => {
     const existingCartItem = cart.find(
@@ -59,15 +60,22 @@ const App = () => {
     setCart([]);
     setOrderCompleted(false);
     setTotalOrders(totalOrders + 1);
+    setTotalProfit(totalProfit + netProfit);
+    setTotalSales(totalSales + totalCost);
   };
 
   const handleNewItemSubmit = (event) => {
     event.preventDefault();
+    if (!newItemName || !newItemBuyingPrice || !newItemSellingPrice) {
+      alert("Please fill in all fields");
+      return;
+    }
     const newItem = {
       name: newItemName,
       buyingPrice: newItemBuyingPrice,
       sellingPrice: newItemSellingPrice,
     };
+
     setItems([...items, newItem]);
     setNewItemName("");
     setNewItemBuyingPrice("");
@@ -77,8 +85,6 @@ const App = () => {
   const netProfit = cart.reduce((acc, cur) => acc + cur.profit, 0);
   const totalCost = cart.reduce((acc, cur) => acc + cur.totalCost, 0);
   const numberOfOrders = cart.length;
-  const totalProfit = cart.reduce((acc, item) => acc + item.profit, 0);
-  const totalSales = cart.reduce((acc, item) => acc + item.totalCost, 0);
 
   return (
     <div
@@ -187,7 +193,9 @@ const App = () => {
         <button type="submit">Add Item</button>
       </form>
       <div>
-        <p>Total Orders: {totalOrders}</p>
+        <p>Total Orders - {totalOrders}</p>
+        <p> Total Profit - {totalProfit}</p>
+        <p> Total Sales - {totalSales}</p>
       </div>
     </div>
   );
