@@ -9,11 +9,12 @@
 body {
   font-family: Arial, sans-serif;
   color: #333;
+  background-color: rgb(16, 33, 80);
 }
 
 /* Center the main container */
 div {
-  max-width: 800px;
+  max-width: auto;
   margin: 0 auto;
   padding: 20px;
 }
@@ -145,7 +146,6 @@ h1 {
   font-size: 2.5vi;
   margin-bottom: 20px;
   color: rgb(251, 251, 251);
-  background-color: rgb(255, 0, 0);
   text-align: center;
 }
 

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./index.css";
 import backgroundImage from "./images/circ.jpg";
+
 const App = () => {
   const [items, setItems] = useState([
     { name: "Apple", buyingPrice: 100, sellingPrice: 150 },
     { name: "Carrot", buyingPrice: 50, sellingPrice: 75 },
   ]);
+
+  //States
+
   const [cart, setCart] = useState([]);
   const [selectedItem, setSelectedItem] = useState(items[0]);
   const [orderCompleted, setOrderCompleted] = useState(false);
@@ -15,6 +19,8 @@ const App = () => {
   const [totalOrders, setTotalOrders] = useState(0);
   const [totalProfit, setTotalProfit] = useState(0);
   const [totalSales, setTotalSales] = useState(0);
+
+  //Handle
 
   const handleItemAddToCart = (weight) => {
     const existingCartItem = cart.find(
@@ -84,12 +90,12 @@ const App = () => {
 
   const netProfit = cart.reduce((acc, cur) => acc + cur.profit, 0);
   const totalCost = cart.reduce((acc, cur) => acc + cur.totalCost, 0);
-  const numberOfOrders = cart.length;
+
+  //HTML
 
   return (
     <div
       style={{
-        backgroundImage: `url(${backgroundImage})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
         backgroundSize: "cover",
