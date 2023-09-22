@@ -15,6 +15,10 @@ const styles = {
 
   marginX: "sm:mx-16 mx-6",
   marginY: "sm:my-16 my-6",
+
+  gradient: "bg-gradient-to-r from-cyan-100 to-cyan-600 ",
+  textgradient:
+    "bg-gradient-to-r from-cyan-100 to-cyan-600 text-transparent bg-clip-text",
 };
 
 export const layout = {

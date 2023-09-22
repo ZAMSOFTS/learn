@@ -30,11 +30,8 @@ const Navbar = () => {
             onClick={() => setToggle((prev) => !prev)}
           />
           <div
-            className={`${
-              toggle ? "flex" : "hidden"
-            } p-6 bg-gradient-to-tr from-cyan-900
-            to-black
-             absolute top-20 right-0 mx-2 my-2 min-w-[130px] rounded-xl animate-sidebar`}
+            className={`${toggle ? "flex" : "hidden"} p-6 bg-black-gradient
+             absolute top-20 right-0 mx-2 my-2 min-w-[130px] rounded-xl sidebar`}
           >
             <ul className="list-none flex  flex-col justify-end items-center flex-1">
               {navLinks.map((nav, index) => (

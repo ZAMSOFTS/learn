@@ -11,7 +11,6 @@ import {
   CTA,
   FeedBackCard,
   Footer,
-  GetStarted,
   Hero,
   Testimonials,
 } from "./components";

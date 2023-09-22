@@ -10,6 +10,7 @@ module.exports = {
         dimWhite: "rgba(255, 255, 255, 0.7)",
         dimBlue: "rgba(9, 151, 124, 0.1)",
         grey: "#808080",
+        gradient: "bg-gradient-to-r from-cyan-100 to-cyan-600 ",
       },
 
       fontFamily: {
